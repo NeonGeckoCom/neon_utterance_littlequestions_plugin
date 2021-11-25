@@ -22,11 +22,14 @@
 # LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE,  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-from neon_transformers import UtteranceTransformer
 from little_questions.classifiers import get_classifier
+from neon_transformers import UtteranceTransformer
+from neon_transformers.tasks import UtteranceTask
 
 
 class QuestionTagger(UtteranceTransformer):
+    task = UtteranceTask.CLASSIFY_QUESTION
+
     def __init__(self, name="little_questions", priority=50):
         super().__init__(name, priority)
         self.classifiers = {"en": get_classifier("en")}
